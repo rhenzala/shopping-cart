@@ -1,5 +1,6 @@
 import { useState } from "react"
 import renshop from '../../assets/logo/renshop.png'
+import HamburgerMenu from "./HamburgerMenu"
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -8,6 +9,10 @@ const Header = () => {
         {label: 'Home', href: '#'},
         {label: 'Home', href: '#'},
     ]
+
+    const handleMenuClick = () => {
+        setIsOpen(!isOpen)
+    }
     return (
         <header>
             <div className="logo">
