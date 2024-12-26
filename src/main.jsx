@@ -3,17 +3,19 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './index.css'
 import App from './components/App.jsx'
-import HomePage from './components/main/Home.jsx';
+import ErrorPage from './components/ErrorPage.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
   },
   {
-    path: "home",
-    element: <HomePage />,
+    path: "/:name",
+    element: <App />,
   },
+
 ]);
 
 createRoot(document.getElementById('root')).render(
