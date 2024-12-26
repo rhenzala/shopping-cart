@@ -1,7 +1,13 @@
 import homeImage from '/src/assets/onlineshop.jpg'
+import { useNavigate } from 'react-router-dom'
 
 
 const HomePage = () => {
+    const navigate = useNavigate();
+
+    const handleShopNow = () => {
+        navigate('/shop')
+    }
     return (
         <div className='mt-16 text-white'>
             <section className='h-[calc(100vh-4rem)] w-full relative'>
@@ -10,6 +16,7 @@ const HomePage = () => {
                     <button 
                     className='px-3 py-1 text-whitefont-semibold bg-red border-red border border-solid rounded-md w-40'
                     aria-label='Shop now'
+                    onClick={handleShopNow}
                     >
                         SHOP NOW
                     </button>

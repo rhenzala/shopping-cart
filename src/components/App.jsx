@@ -14,7 +14,7 @@ import AboutPage from './main/About';
 
 
 const App = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const { name } = useParams();
 
   const menuItems = [
@@ -26,13 +26,14 @@ const App = () => {
   const handleMenuClick = () => {
       setIsOpen(!isOpen)
   }
+
   const renderPage = () => {
     switch (name) {
       case 'shop':
         return <ShopPage />;
       case 'about':
         return <AboutPage />;
-      case undefined: // For the root path '/'
+      case undefined: 
         return <HomePage />;
       default:
         return <HomePage />;
@@ -90,12 +91,12 @@ const App = () => {
           }`}> 
                   <nav  className="px-2 pt-2 pb-3 space-y-1 flex flex-col">
                   {menuItems.map((item) =>(
-                      <a key={item.label}
-                      href={item.href}
+                      <Link key={item.label}
+                      to={item.href}
                       className='block text-white px-3 py-2 rounded-md'
                       >
                           {item.label}
-                      </a>
+                      </Link>
                   ))}
                   </nav>
               </div>
