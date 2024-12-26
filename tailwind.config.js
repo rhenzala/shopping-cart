@@ -12,7 +12,11 @@ export default {
       'black': '#020617',
       'red': '#dc2626',
     },
-    extend: {},
+    extend: {
+      screens: {
+        "custom-md": { max: "768px" },
+      },
+    },
   },
   plugins: [],
 }
