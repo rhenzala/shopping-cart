@@ -16,7 +16,7 @@ const Header = () => {
         setIsOpen(!isOpen)
     }
     return (
-        <header className="bg-red w-full md:relative fixed sm:fixed">
+        <header className="bg-red w-full fixed top-0 z-50">
             <div className="w-full px-4">
                 <div className="flex items-center justify-between">
                     <div className="logo">
@@ -46,12 +46,12 @@ const Header = () => {
                                 className="px-2 rounded-md"
                                 />
                                 <button>
-                                    <Search color="#020617" size={24}/>
+                                    <Search color="#f8fafc" size={24}/>
                                 </button>
                             </div>
                             <div>
                                 <button>
-                                    <ShoppingCart color="#020617" size={24}/>
+                                    <ShoppingCart color="#f8fafc" size={24}/>
                                 </button>
                             </div>
                         </div>
