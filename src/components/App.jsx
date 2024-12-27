@@ -15,7 +15,12 @@ import AboutPage from './main/About';
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState([])
   const { name } = useParams();
+
+  const handleData = (arr) => {
+    setData(arr)
+  }
 
   const menuItems = [
       {label: 'Home', href: '/'},
@@ -30,7 +35,7 @@ const App = () => {
   const renderPage = () => {
     switch (name) {
       case 'shop':
-        return <ShopPage />;
+        return <ShopPage data={data} handleData={handleData} />;
       case 'about':
         return <AboutPage />;
       case undefined: 
@@ -101,11 +106,11 @@ const App = () => {
                   </nav>
               </div>
           </div>
-      </header>
-      <main>
-        {renderPage()}
-      </main>
-      <FooterContent />
+        </header>
+        <main>
+            {renderPage()}
+        </main>
+        <FooterContent />
       </div>
   )
 }

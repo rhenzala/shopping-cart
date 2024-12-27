@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 
-const ProductCard = ({product, selectedCategory}) => {
-    
+const CreateCard = ({product}) => {
     return (
-        (selectedCategory === 'all' ? (<div className='p-8 border-black border-2 border-solid rounded-md'>
+        <div className='p-8 border-black border-2 border-solid rounded-md'>
             <div>
                 <img src={product.image} alt={"profile"} className='w-20 h-20'/>
                 <h3>{product.title}</h3>
@@ -12,24 +11,19 @@ const ProductCard = ({product, selectedCategory}) => {
             <div>
                 <button>Add to Cart</button>
             </div>
-        </div>)
-        : product.category === selectedCategory && 
-            <div className='p-8 border-black border-2 border-solid rounded-md'>
-                <div>
-                    <img src={product.image} alt={"profile"} className='w-20 h-20'/>
-                    <h3>{product.title}</h3>
-                    <p>${product.price}</p>
-                </div>
-                <div>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
+        </div>
+    )
+}
+const ProductCard = ({product, selectedCategory}) => {
+    return (
+        (selectedCategory === 'all' ? 
+        <CreateCard product={product} />
+        : product.category === selectedCategory && <CreateCard product={product} />
         )
     );
 }
 
-const ShopPage = () => {
-    const [data, setData] = useState([])
+const ShopPage = ({data, handleData}) => {
     const [selectedCaterory, setSelectedCategory] = useState('all')
 
     const handleCategory = (e) => {
@@ -42,7 +36,7 @@ const ShopPage = () => {
               .then((response) => response.json())
               .then((response) => { 
                 if (isMounted) {
-                    setData(response.slice(0,20))
+                    handleData(response.slice(0,20))
                 }
             })
               .catch((error) => console.error(error));
