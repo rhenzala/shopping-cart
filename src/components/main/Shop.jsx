@@ -9,12 +9,11 @@ const CreateCard = ({product, onClick}) => {
         onClick={onClick}
         >
             <div>
-                <img src={product.image} alt={"profile"} className='w-20 h-20'/>
-                <h3>{product.title}</h3>
-                <p>${product.price}</p>
+                <img src={product.image} alt={product.title} className='w-20 h-20'/>
             </div>
             <div>
-                <button>Add to Cart</button>
+                <h3>{product.title}</h3>
+                <p>${product.price}</p>
             </div>
         </div>
     )
