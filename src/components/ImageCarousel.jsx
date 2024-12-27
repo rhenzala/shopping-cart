@@ -36,13 +36,13 @@ const ImageCarousel = ({data}) => {
             {data.map((product) => (
             <div
                 key={product.id}
-                className={`absolute w-full h-full transition-opacity duration-500 ease-in-out
+                className={`absolute w-full h-full py-8 transition-opacity duration-500 ease-in-out
                 ${product.id === currentIndex ? 'opacity-100' : 'opacity-0'} flex justify-center`}
             >
                 <img
                 src={product.image}
                 alt={product.title}
-                className="w-1/2"
+                className="w-1/2 custom-md:w-2/3"
                 />
             </div>
             ))}
