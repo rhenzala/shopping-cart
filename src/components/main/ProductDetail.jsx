@@ -1,7 +1,7 @@
 import { useNavigate, useOutletContext, useParams } from "react-router-dom"
 
 const ProductDetail = () => {
-    const {data} = useOutletContext()
+    const {data, addToCart} = useOutletContext()
     console.log(data)
     const { id } = useParams()
     const navigate  = useNavigate()
@@ -24,7 +24,7 @@ const ProductDetail = () => {
                 <div>
                     <p>{product.description}</p>
                 </div>
-                <button>
+                <button onClick={() => addToCart(product)}>
                     Add to Cart
                 </button>
             </section>

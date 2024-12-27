@@ -19,8 +19,8 @@ const App = () => {
       {label: 'Shop', href: '/shop'},
       {label: 'About', href: '/about'},
   ]
-  const addToCart = () => {
-    setCartItem();
+  const addToCart = (item) => {
+    setCartItem(item);
   }
   const handleCartClick = () => {
     navigate('cart')
@@ -111,7 +111,7 @@ const App = () => {
           </div>
         </header>
         <main>
-            <Outlet context={{data, cartItem}} />
+            <Outlet context={{data, cartItem, addToCart}} />
         </main>
         <FooterContent />
       </div>
