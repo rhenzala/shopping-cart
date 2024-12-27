@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const ImageCarousel = ({data}) => {
     const [currentIndex, setCurrentIndex] = useState(1)
-    const [isPlaying, setIsPlaying] = useState(true)
+    const [isPlaying] = useState(true)
 
     useEffect(() => {
         let interval;
@@ -30,7 +30,7 @@ const ImageCarousel = ({data}) => {
         setCurrentIndex(index)
     }
     return (
-        <div className="relative w-full max-w-3xl mx-auto my-16">
+        <div className="relative w-full max-w-3xl mx-auto my-8">
         <div className="relative h-[calc(100vh-12rem)] overflow-hidden rounded-lg">
 
             {data.map((product) => (
