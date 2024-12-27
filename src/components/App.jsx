@@ -1,19 +1,16 @@
 import '../App.css'
-import { Link, useParams } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useState, useEffect } from "react"
 import renshop from '../assets/logo/renshop.png'
 import HamburgerMenu from "./HamburgerMenu"
 import { Search, ShoppingCart } from 'lucide-react'
-import HomePage from './main/Home'
 import FooterContent from './footer/Footer'
-import ShopPage from './main/Shop';
-import AboutPage from './main/About';
+
 
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([])
-  const { name } = useParams();
 
   const menuItems = [
       {label: 'Home', href: '/'},
@@ -41,20 +38,9 @@ const App = () => {
       setIsOpen(!isOpen)
   }
 
-  const renderPage = () => {
-    switch (name) {
-      case 'shop':
-        return <ShopPage data={data} />;
-      case 'about':
-        return <AboutPage />;
-      case undefined: 
-        return <HomePage data={data} />;
-      default:
-        return <HomePage data={data} />;
-    }
-  };
+
   return(
-      <div>
+      <div className='grid'>
         <header className="bg-red w-full fixed top-0 z-50">
           <div className="w-full px-4">
               <div className="flex items-center justify-between">
@@ -117,7 +103,7 @@ const App = () => {
           </div>
         </header>
         <main>
-            {renderPage()}
+            <Outlet context={{data}} />
         </main>
         <FooterContent />
       </div>
