@@ -48,9 +48,9 @@ const App = () => {
       case 'about':
         return <AboutPage />;
       case undefined: 
-        return <HomePage />;
+        return <HomePage data={data} />;
       default:
-        return <HomePage />;
+        return <HomePage data={data} />;
     }
   };
   return(
