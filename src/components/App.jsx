@@ -1,5 +1,5 @@
 import '../App.css'
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react"
 import renshop from '../assets/logo/renshop.png'
 import HamburgerMenu from "./HamburgerMenu"
@@ -11,12 +11,20 @@ import FooterContent from './footer/Footer'
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([])
+  const [cartItem, setCartItem] = useState([])
+  const navigate = useNavigate();
 
   const menuItems = [
       {label: 'Home', href: '/'},
       {label: 'Shop', href: '/shop'},
       {label: 'About', href: '/about'},
   ]
+  const addToCart = () => {
+    setCartItem();
+  }
+  const handleCartClick = () => {
+    navigate('cart')
+  }
   useEffect(() => {
     let isMounted = true;
     function fetchProduct() {
@@ -75,7 +83,7 @@ const App = () => {
                               </button>
                           </div>
                           <div>
-                              <button>
+                              <button onClick={() => handleCartClick()}>
                                   <ShoppingCart color="#f8fafc" size={24}/>
                               </button>
                           </div>
@@ -103,7 +111,7 @@ const App = () => {
           </div>
         </header>
         <main>
-            <Outlet context={{data}} />
+            <Outlet context={{data, cartItem}} />
         </main>
         <FooterContent />
       </div>
