@@ -82,7 +82,11 @@ const App = () => {
                               </button>
                           </div>
                           <div>
-                              <button onClick={() => handleCartClick()}>
+                              <button 
+                              onClick={() => handleCartClick()}
+                              className='relative'
+                              >
+                                <span className='bg-black text-white text-[8px] font-bold absolute top-0 w-4 rounded-sm'>{cartItem.length === 0 ? '' : cartItem.length}</span>
                                   <ShoppingCart color="#f8fafc" size={24}/>
                               </button>
                           </div>
