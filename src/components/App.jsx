@@ -7,7 +7,6 @@ import { Search, ShoppingCart } from 'lucide-react'
 import FooterContent from './footer/Footer'
 
 
-
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([])
@@ -20,7 +19,7 @@ const App = () => {
       {label: 'About', href: '/about'},
   ]
   const addToCart = (item) => {
-    setCartItem(item);
+    setCartItem(prevItem => [...prevItem, item]);
   }
   const handleCartClick = () => {
     navigate('cart')

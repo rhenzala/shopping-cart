@@ -9,14 +9,24 @@ const ProductDetail = () => {
     const navigate  = useNavigate()
     const product = data.find(prod => prod.id === parseInt(id))
     console.log(product)
+
+    const handleAddToCart = (product, qty) => {
+        const item = {}
+        item.id = product.id
+        item.title = product.title
+        item.image = product.image
+        item.price = product.price
+        item.quantity = qty
+        addToCart(item)
+    }
     const addQuantity = () => {
         setQuantity(quantity => quantity += 1)
     }
     const subtractQuantity = () => {
         setQuantity(quantity => quantity > 0 ? quantity -= 1 : 0)
     }
-    const handleQuantity = (e) => {
-        const qty = e.target.value === '' ? 0: parseInt(e.target.value, 10)
+    const handleQuantityChange = (e) => {
+        const qty = e.target.value > 0 ? parseInt(e.target.value, 10) : 0
         setQuantity(qty)
     }
     return(
@@ -38,10 +48,10 @@ const ProductDetail = () => {
                 </div>
                 <div>
                     <button onClick={() => subtractQuantity()}>-</button>
-                    <input type="number" value={quantity} onChange={handleQuantity} min={0}/>
+                    <input type="number" value={quantity} onChange={handleQuantityChange} min={0}/>
                     <button onClick={() => addQuantity()}>+</button>
                 </div>
-                <button onClick={() => addToCart(product)}>
+                <button onClick={() => handleAddToCart(product, quantity)}>
                     Add to Cart
                 </button>
             </section>
