@@ -1,106 +1,30 @@
 import { useEffect, useState } from 'react';
 
-const All = ({product}) => {
-    return(
-        <div className='p-8 border-black border-2 border-solid rounded-md'>
-            <div>
-                <img src={product.image} alt={"profile"} className='w-20 h-20'/>
-                <h3>{product.title}</h3>
-                <p>${product.price}</p>
-            </div>
-            <div>
-                <button>Add to Cart</button>
-            </div>
-        </div>
-    )
-}
-const Men = ({product}) => {
-    return(
-        (product.category === "men's clothing" && 
-        <div className='p-8 border-black border-2 border-solid rounded-md'>
-            <div>
-                <img src={product.image} alt={"profile"} className='w-20 h-20'/>
-                <h3>{product.title}</h3>
-                <p>${product.price}</p>
-            </div>
-            <div>
-                <button>Add to Cart</button>
-            </div>
-        </div>
-    )
-    )
-}
-const Women = ({product}) => {
-    return(
-        (product.category === "women's clothing" && 
-        <div className='p-8 border-black border-2 border-solid rounded-md'>
-            <div>
-                <img src={product.image} alt={"profile"} className='w-20 h-20'/>
-                <h3>{product.title}</h3>
-                <p>${product.price}</p>
-            </div>
-            <div>
-                <button>Add to Cart</button>
-            </div>
-        </div>
-    )
-    )
-}
-const Electronics = ({product}) => {
-    return(
-        (product.category === "electronics" && 
-        <div className='p-8 border-black border-2 border-solid rounded-md'>
-            <div>
-                <img src={product.image} alt={"profile"} className='w-20 h-20'/>
-                <h3>{product.title}</h3>
-                <p>${product.price}</p>
-            </div>
-            <div>
-                <button>Add to Cart</button>
-            </div>
-        </div>
-    )
-    )
-}
-const Jewelry = ({product}) => {
-    return(
-        (product.category === "jewelery" && 
-        <div className='p-8 border-black border-2 border-solid rounded-md'>
-            <div>
-                <img src={product.image} alt={"profile"} className='w-20 h-20'/>
-                <h3>{product.title}</h3>
-                <p>${product.price}</p>
-            </div>
-            <div>
-                <button>Add to Cart</button>
-            </div>
-        </div>
-    )
-    )
-}
-
-const ProductCard = ({product, category}) => {
-    const renderProduct = () => {
-        switch (category){
-            case 'all':
-                return <All product={product} />;
-            case 'men':
-                return <Men product={product} />;
-            case 'women':
-                return <Women product={product} />;
-            case 'electronics':
-                return <Electronics product={product} />;
-            case 'jewelry':
-                return <Jewelry product={product} />;
-            default:
-                return <All product={product} />;
-        }
-
-    }
+const ProductCard = ({product, selectedCategory}) => {
+    
     return (
-        <div>
-            {renderProduct()}
-        </div>
+        (selectedCategory === 'all' ? (<div className='p-8 border-black border-2 border-solid rounded-md'>
+            <div>
+                <img src={product.image} alt={"profile"} className='w-20 h-20'/>
+                <h3>{product.title}</h3>
+                <p>${product.price}</p>
+            </div>
+            <div>
+                <button>Add to Cart</button>
+            </div>
+        </div>)
+        : product.category === selectedCategory && 
+            <div className='p-8 border-black border-2 border-solid rounded-md'>
+                <div>
+                    <img src={product.image} alt={"profile"} className='w-20 h-20'/>
+                    <h3>{product.title}</h3>
+                    <p>${product.price}</p>
+                </div>
+                <div>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+        )
     );
 }
 
@@ -140,10 +64,10 @@ const ShopPage = () => {
                     onChange={handleCategory}
                     > 
                         <option value="all">All</option>
-                        <option value="men">Men&apos;s Clothing</option>
-                        <option value="women">Women&apos;s Clothing</option>
+                        <option value="men's clothing">Men&apos;s Clothing</option>
+                        <option value="women's clothing">Women&apos;s Clothing</option>
                         <option value="electronics">Electronics</option>
-                        <option value="jewelry">Jewelry</option>
+                        <option value="jewelery">Jewelry</option>
                     </select>
                 </label>
             </div>
@@ -152,7 +76,7 @@ const ShopPage = () => {
                     <ProductCard
                     key={product.id}
                     product={product}
-                    category={selectedCaterory}
+                    selectedCategory={selectedCaterory}
                     />
                 )}
             </div>
