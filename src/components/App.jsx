@@ -1,7 +1,6 @@
-
 import '../App.css'
 import { Link, useParams } from "react-router-dom";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import renshop from '../assets/logo/renshop.png'
 import HamburgerMenu from "./HamburgerMenu"
 import { Search, ShoppingCart } from 'lucide-react'
@@ -11,23 +10,33 @@ import ShopPage from './main/Shop';
 import AboutPage from './main/About';
 
 
-
-
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([])
   const { name } = useParams();
-
-  const handleData = (arr) => {
-    setData(arr)
-  }
 
   const menuItems = [
       {label: 'Home', href: '/'},
       {label: 'Shop', href: '/shop'},
       {label: 'About', href: '/about'},
   ]
-
+  useEffect(() => {
+    let isMounted = true;
+    function fetchProduct() {
+        fetch(`https://fakestoreapi.com/products/`, { mode: "cors" })
+        .then((response) => response.json())
+        .then((response) => { 
+            if (isMounted) {
+                setData(response.slice(0,20))
+            }
+        })
+        .catch((error) => console.error(error));
+    }
+    fetchProduct()
+    return () => {
+        isMounted = false
+    }
+    }, []);
   const handleMenuClick = () => {
       setIsOpen(!isOpen)
   }
@@ -35,7 +44,7 @@ const App = () => {
   const renderPage = () => {
     switch (name) {
       case 'shop':
-        return <ShopPage data={data} handleData={handleData} />;
+        return <ShopPage data={data} />;
       case 'about':
         return <AboutPage />;
       case undefined: 

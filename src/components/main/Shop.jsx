@@ -23,29 +23,13 @@ const ProductCard = ({product, selectedCategory}) => {
     );
 }
 
-const ShopPage = ({data, handleData}) => {
+const ShopPage = ({data}) => {
     const [selectedCaterory, setSelectedCategory] = useState('all')
 
     const handleCategory = (e) => {
         setSelectedCategory(e.target.value)
     }
-    useEffect(() => {
-        let isMounted = true;
-        function fetchProduct() {
-            fetch(`https://fakestoreapi.com/products/`, { mode: "cors" })
-              .then((response) => response.json())
-              .then((response) => { 
-                if (isMounted) {
-                    handleData(response.slice(0,20))
-                }
-            })
-              .catch((error) => console.error(error));
-          }
-        fetchProduct()
-        return () => {
-            isMounted = false
-        }
-    }, []);
+    
     console.log(data)
     return(
         <div className='mt-16 flex flex-col gap-8 p-8'>
