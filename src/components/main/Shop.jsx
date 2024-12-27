@@ -1,56 +1,62 @@
 import { useEffect, useState } from 'react';
 
 
-const ProductCard = ({num}) => {
-    const [imageURL, setImageURL] = useState(null);
-    const [descText, setDescText] = useState(null);
-    const [productName, setProductName] = useState(null);
-  
-    useEffect(() => {
-        let isMounted = true;
-        function searchProduct(num) {
-            fetch(`https://fakestoreapi.com/products/${num}`, { mode: "cors" })
-              .then((response) => response.json())
-              .then((response) => { 
-                if (isMounted) {
-                    setImageURL(response.image) 
-                    setDescText(response.description)
-                    setProductName(response.title)
-                }
-            })
-              .catch((error) => console.error(error));
-          }
-        searchProduct(num)
-        return () => {
-            isMounted = false
-        }
-    }, []);
+const ProductCard = ({product}) => {
   
     return (
-      (imageURL && (
         <div className='p-8 border-black border-2 border-solid rounded-md'>
             <div>
-                <img src={imageURL} alt={"profile"} className='w-20 h-20'/>
-                <h3>{productName}</h3>
-                <p>1200</p>
+                <img src={product.image} alt={"profile"} className='w-20 h-20'/>
+                <h3>{product.title}</h3>
+                <p>${product.price}</p>
             </div>
             <div>
                 <button>Add to Cart</button>
             </div>
         </div>
-      )) 
     );
 }
 
 const ShopPage = () => {
-    const numArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+    const [data, setData] = useState([])
+    useEffect(() => {
+        let isMounted = true;
+        function fetchProduct() {
+            fetch(`https://fakestoreapi.com/products/`, { mode: "cors" })
+              .then((response) => response.json())
+              .then((response) => { 
+                if (isMounted) {
+                    setData(response.slice(0,20))
+                }
+            })
+              .catch((error) => console.error(error));
+          }
+        fetchProduct()
+        return () => {
+            isMounted = false
+        }
+    }, []);
+    console.log(data)
     return(
-        <div className='mt-16 grid gap-4 grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))]'>
-            {numArray.map((item, index) => (
+        <div className='mt-16 flex flex-col gap-8 p-8'>
+            <div>
+                <label htmlFor="categories"><span>Categories: </span>
+                    <select name='categories'> 
+                        <option value="men">Men&apos;s Clothing</option>
+                        <option value="women">Women&apos;s Clothing</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="jewelry">Jewelry</option>
+                    </select>
+                </label>
+            </div>
+            <div className='grid gap-4 grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))]'>
+            {data.map(product => 
                 <ProductCard
-                key={index} 
-                num={item} />
-            ))} 
+                key={product.id}
+                product={product}
+                />
+            )}
+        </div>
         </div>
     )
     
