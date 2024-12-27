@@ -1,8 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useNavigate, useOutletContext } from 'react-router-dom';
+import ProductDetail from './ProductDetail';
 
-const CreateCard = ({product}) => {
+
+const CreateCard = ({product, onClick}) => {
     return (
-        <div className='p-8 border-black border-2 border-solid rounded-md'>
+        <div 
+        className='p-8 border-black border-2 border-solid rounded-md'
+        onClick={onClick}
+        >
             <div>
                 <img src={product.image} alt={"profile"} className='w-20 h-20'/>
                 <h3>{product.title}</h3>
@@ -14,25 +20,23 @@ const CreateCard = ({product}) => {
         </div>
     )
 }
-const ProductCard = ({product, selectedCategory}) => {
+const ProductCard = ({product, selectedCategory, onClick}) => {
     return (
         (selectedCategory === 'all' ? 
-        <CreateCard product={product} />
-        : product.category === selectedCategory && <CreateCard product={product} />
+        <CreateCard product={product} onClick={onClick} />
+        : product.category === selectedCategory && <CreateCard product={product} onClick={onClick} />
         )
     );
 }
 
-const ShopPage = ({data}) => {
+const DisplayProduct = ({data, handleCardClick}) => {
     const [selectedCaterory, setSelectedCategory] = useState('all')
 
     const handleCategory = (e) => {
         setSelectedCategory(e.target.value)
     }
-    
-    console.log(data)
     return(
-        <div className='mt-16 flex flex-col gap-8 p-8'>
+        <div>
             <div>
                 <label htmlFor="categories"><span>Categories: </span>
                     <select 
@@ -53,11 +57,28 @@ const ShopPage = ({data}) => {
                 {data.map(product => 
                     <ProductCard
                     key={product.id}
+                    onClick={() => handleCardClick(product.id)}
                     product={product}
                     selectedCategory={selectedCaterory}
                     />
                 )}
             </div>
+        </div>
+    )
+}
+
+
+const ShopPage = () => {
+    const {data} = useOutletContext()
+    const navigate = useNavigate()
+    const handleCardClick = (id) => {
+        navigate(`/shop/${id}`)
+    }
+    
+    console.log(data)
+    return(
+        <div className='mt-16 flex flex-col gap-8 p-8'> 
+            <DisplayProduct data={data} handleCardClick={handleCardClick}/>
         </div>
     )
     

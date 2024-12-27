@@ -1,9 +1,11 @@
 import homeImage from '/src/assets/onlineshop.jpg'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useOutletContext } from 'react-router-dom'
 import ImageCarousel from '../ImageCarousel';
 import { ArrowRight } from 'lucide-react';
 
-const HomePage = ({data}) => {
+
+const HomePage = () => {
+    const {data} = useOutletContext()
     const navigate = useNavigate();
 
     const handleShopNow = () => {
@@ -35,7 +37,10 @@ const HomePage = ({data}) => {
                     />
                 </div>
             </section>
-            <section className='h-[calc(100vh-4rem)] w-full'>
+            <section className='h-[calc(100vh-4rem)] w-full py-8'>
+                <div className='flex justify-center'>
+                    <h1 className='uppercase text-3xl text-black/70 font-bold'>new arrival</h1>
+                </div>
                 <ImageCarousel data={data} />
             </section>
         
