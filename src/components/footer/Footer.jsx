@@ -1,4 +1,4 @@
-import { HandCoins, Handshake, CircleDot, CalendarCheck, Phone, Mail, MessageSquare, Facebook, Twitter, Linkedin, Youtube, X, TwitterIcon, Github } from "lucide-react";
+import { HandCoins, Handshake, CircleDot, CalendarCheck, Phone, Mail, MessageSquare, Facebook, Twitter, Linkedin, Youtube, Github } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const FooterContent = () => {
