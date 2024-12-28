@@ -6,11 +6,11 @@ const AboutPage = () => {
         <section className="mt-4 flex flex-col gap-4">
           <article className="">
             <p>
-              Welcome to Renshop, your trusted destination for high-quality
+              Welcome to Renshoppe, your trusted destination for high-quality
               products and seamless online shopping experiences.
             </p>
             <p>
-              At Renshop, we believe that shopping should be simple, enjoyable,
+              At Renshoppe, we believe that shopping should be simple, enjoyable,
               and convenient. That’s why we’re dedicated to bringing you a curated
               selection of products, all in one place.
             </p>
@@ -51,7 +51,7 @@ const AboutPage = () => {
               quality and reliability in the e-commerce industry.
             </p>
             <p>
-              Whether you’re looking for daily essentials or unique finds, Renshop
+              Whether you’re looking for daily essentials or unique finds, Renshoppe
               is here to help you discover what you love. Start shopping with us
               today and experience the difference!
             </p>
