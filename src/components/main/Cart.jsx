@@ -3,7 +3,7 @@ import { Trash2Icon } from "lucide-react"
 
 const DisplayCartItems = ({item, deleteCartItem}) => {
     return(
-        <section className="flex justify-between">
+        <section className="grid grid-cols-4 gap-3">
             <div>
                 <img 
                 src={item.image} 
@@ -11,13 +11,16 @@ const DisplayCartItems = ({item, deleteCartItem}) => {
                 className="w-20 h-20"
                 />
             </div>
-            <div>
+            <div className="col-span-2">
                 <h1>{item.title}</h1>
                 <p>${item.price}</p>
                 <p>Quantity: {item.quantity}</p>
             </div>
-            <div>
-                <p>Total: ${item.quantity * item.price}</p>
+            <div className="flex flex-col gap-3 items-end">
+                <div className="flex gap-2">
+                    <p className="font-semibold">Total:</p>
+                    <p>${item.quantity * item.price}</p>
+                </div>
                 <button onClick={() => deleteCartItem(item.id)}>
                     <Trash2Icon size={16}/>
                 </button>
@@ -27,6 +30,11 @@ const DisplayCartItems = ({item, deleteCartItem}) => {
 }
 const Cart = () => {
     const {cartItem, deleteCartItem} = useOutletContext()
+    function calculateTotal(items) {
+        return items.reduce((total, item) => {
+            return total + (item.price * item.quantity);
+        }, 0);
+    }
     return(
         <div className="h-[calc(100vh-4rem)] mt-16 py-10">
             <div className="bg-white/40 shadow-lg rounded-lg w-[700px] custom-md:w-[90%] p-10 mx-auto">
@@ -41,13 +49,17 @@ const Cart = () => {
                         />
                     ))}
                 </div>
-                <div className="flex flex-col items-end">
-                    <div className="flex gap-4">
-                        <h1>Total Cost:</h1>
+                <div className="flex flex-col gap-4 items-end mt-2">
+                    <div className="flex gap-2 text-xl">
+                        <h1 className="font-semibold">Total Cost:</h1>
                         <p>{cartItem.length === 0 ?
-                        '': '$100'}</p>
+                        '': '$' + calculateTotal(cartItem)}</p>
                     </div>
-                    <button className="bg-blue px-3 py-1 text-white font-semibold rounded-md">Checkout</button>
+                    <div>
+                        <button className="bg-blue px-3 py-1 text-white font-semibold rounded-md">
+                            Checkout
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
