@@ -34,8 +34,8 @@ const ProductDetail = () => {
     setQuantity(qty);
   };
   return (
-    <div className="mt-16 min-h-[calc(100vh-4rem)] w-full px-[10%]">
-      <div className="pt-8">
+    <div className="mt-16 min-h-[calc(100vh-4rem)] w-full px-[10%] py-10">
+      <div>
         <button
             onClick={() => navigate(-1)}
             className="px-4 py-2 bg-red/90 text-white font-medium rounded-md hover:bg-red"
