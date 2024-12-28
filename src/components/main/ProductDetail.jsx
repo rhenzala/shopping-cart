@@ -3,21 +3,25 @@ import { useNavigate, useOutletContext, useParams } from "react-router-dom"
 
 const ProductDetail = () => {
     const [quantity, setQuantity] = useState(1)
-    const {data, addToCart} = useOutletContext()
+    const {data, addToCart, cartItem} = useOutletContext()
     console.log(data)
     const { id } = useParams()
     const navigate  = useNavigate()
     const product = data.find(prod => prod.id === parseInt(id))
     console.log(product)
 
-    const handleAddToCart = (product, qty) => {
-        const item = {}
-        item.id = product.id
-        item.title = product.title
-        item.image = product.image
-        item.price = product.price
-        item.quantity = qty
-        addToCart(item)
+    const handleAddToCart = (product, qty, cartItem) => {
+        const existingItem = cartItem.find(item => item.id === product.id)
+        if (!existingItem) {
+            const item = {
+                id: product.id,
+                title: product.title,
+                image: product.image,
+                price: product.price,
+                quantity: qty
+            }
+            addToCart(item)
+        }
     }
     const addQuantity = () => {
         setQuantity(quantity => quantity += 1)
@@ -51,7 +55,7 @@ const ProductDetail = () => {
                     <input type="number" value={quantity} onChange={handleQuantityChange} min={0}/>
                     <button onClick={() => addQuantity()}>+</button>
                 </div>
-                <button onClick={() => handleAddToCart(product, quantity)}>
+                <button onClick={() => handleAddToCart(product, quantity, cartItem)}>
                     Add to Cart
                 </button>
             </section>
