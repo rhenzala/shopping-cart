@@ -4,14 +4,14 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 const CreateCard = ({ product, onClick }) => {
   return (
     <div
-      className="p-8 border-black border-2 border-solid rounded-md"
+      className="py-8 px-5 border-black/20 border-2 border-solid flex flex-col gap-3"
       onClick={onClick}
     >
-      <div>
-        <img src={product.image} alt={product.title} className="w-20 h-20" />
+      <div className="flex justify-center items-center p-3 border-b-black/40 border-b border-b-solid">
+        <img src={product.image} alt={product.title} className="w-24 h-24" />
       </div>
       <div>
-        <h3>{product.title}</h3>
+        <p className="text-sm font-semibold leading-none">{product.title}</p>
         <p>${product.price}</p>
       </div>
     </div>
@@ -35,12 +35,16 @@ const DisplayProduct = ({ data, handleCardClick }) => {
   };
   return (
     <div>
-      <div>
-        <label htmlFor="categories">
+      <div className="mb-8">
+        <label 
+        htmlFor="categories"
+        className="border-black border-2 border-solid px-2 py-1"
+        >
           <span>Categories: </span>
           <select
             name="categories"
             id="categories"
+            className="outline-none"
             value={selectedCaterory}
             onChange={handleCategory}
           >
@@ -71,7 +75,16 @@ const ShopPage = () => {
 
   console.log(data);
   return (
-    <div className="mt-16 flex flex-col gap-8 p-8">
+    <div className="mt-16 min-h-[calc(100vh-4rem)] w-full px-[10%] py-10">
+        <div className="mb-10">
+        <button
+            onClick={() => navigate(-1)}
+            className="px-4 py-2 bg-red/90 text-white font-medium rounded-md hover:bg-red"
+            aria-label="Back to previous page"
+        >
+            Back
+        </button>
+        </div>
       <DisplayProduct data={data} handleCardClick={handleCardClick} />
     </div>
   );
