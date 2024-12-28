@@ -6,7 +6,9 @@ const ErrorPage = () => {
     <div>
       <h1>Oh no, this route doesn&apos;t exist!</h1>
       <Link to="/">
-        <button><ArrowLeft size={24}/></button>
+        <button>
+          <ArrowLeft size={24} />
+        </button>
       </Link>
     </div>
   );
