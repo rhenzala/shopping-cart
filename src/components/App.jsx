@@ -24,6 +24,11 @@ const App = () => {
   const handleCartClick = () => {
     navigate('cart')
   }
+  const deleteCartItem = (id) => {
+    setCartItem((prevItem) =>
+        prevItem.filter((item) => item.id !== id)
+    )
+  }
   useEffect(() => {
     let isMounted = true;
     function fetchProduct() {
@@ -114,7 +119,7 @@ const App = () => {
           </div>
         </header>
         <main>
-            <Outlet context={{data, cartItem, addToCart}} />
+            <Outlet context={{data, cartItem, addToCart, deleteCartItem}} />
         </main>
         <FooterContent />
       </div>
