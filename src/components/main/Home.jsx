@@ -4,7 +4,7 @@ import ImageCarousel from "../ImageCarousel";
 import { ArrowRight } from "lucide-react";
 
 const HomePage = () => {
-  const { data } = useOutletContext();
+  const { data, handleCardClick } = useOutletContext();
   const navigate = useNavigate();
 
   const handleShopNow = () => {
@@ -35,10 +35,10 @@ const HomePage = () => {
       <section className="h-[calc(100vh-4rem)] w-full py-8">
         <div className="flex justify-center">
           <h1 className="uppercase text-3xl text-black/70 font-bold">
-            new arrival
+            check out our new arrivals
           </h1>
         </div>
-        <ImageCarousel data={data} />
+        <ImageCarousel data={data} handleCardClick={handleCardClick} />
       </section>
     </div>
   );
