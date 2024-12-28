@@ -7,6 +7,8 @@ import Header from "./Header";
 const App = () => {
   const [data, setData] = useState([]);
   const [cartItem, setCartItem] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const menuItems = [
@@ -29,22 +31,21 @@ const App = () => {
   };
 
   useEffect(() => {
-    let isMounted = true;
-    function fetchProduct() {
       fetch(`https://fakestoreapi.com/products/`, { mode: "cors" })
-        .then((response) => response.json())
         .then((response) => {
-          if (isMounted) {
-            setData(response.slice(0, 20));
-          }
+            if (response.status >= 400) {
+                throw new Error("server error");
+              }
+            return response.json()
         })
-        .catch((error) => console.error(error));
-    }
-    fetchProduct();
-    return () => {
-      isMounted = false;
-    };
+        .then((response) => 
+            setData(response.slice(0, 20))
+        )
+        .catch((error) => setError(error))
+        .finally(() => setLoading(false))
   }, []);
+  if (loading) return <div className="flex justify-center items-center"><p className="text-6xl font-bold">Loading...</p></div>;
+  if (error) return <div className="flex justify-center items-center"><p className="text-4xl font-bold">A network error was encountered</p></div>;
   return (
     <div className="grid">
       <Header
