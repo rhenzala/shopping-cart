@@ -9,8 +9,8 @@ const DisplayCartItems = ({ item, deleteCartItem }) => {
       </div>
       <div className="col-span-2 text-sm">
         <h1 className="font-medium">{item.title}</h1>
-        <p>${item.price}</p>
-        <p className="font-medium">Quantity: {item.quantity}</p>
+        <p><span className="font-medium">Price: </span> ${item.price}</p>
+        <p><span className="font-medium">Quantity: </span>{item.quantity}</p>
       </div>
       <div className="flex flex-col gap-3 items-end">
         <div className="flex gap-2">
