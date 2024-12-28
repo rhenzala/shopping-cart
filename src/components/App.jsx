@@ -6,7 +6,6 @@ import Header from './Header';
 
 
 const App = () => {
-  
   const [data, setData] = useState([])
   const [cartItem, setCartItem] = useState([])
   const navigate = useNavigate();

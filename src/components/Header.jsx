@@ -63,25 +63,27 @@ const Header = ({data, menuItems, handleCardClick, cartItem}) => {
                       </div>
                       <div className="flex gap-4">
                           <div className="md:flex gap-1 hidden sm:hidden">
-                            <button>
-                                <Search color="#f8fafc" size={24}/>
-                            </button>
-                            <div className='relative w-40'>
-                                <input 
-                                type="search"
-                                placeholder="Search" 
-                                className="px-2 rounded-md"
-                                value={searchTerm}
-                                onChange={handleSearch}
-                                onBlur={() => {
-                                    setTimeout(() => setShowSuggestions(false), 200)
-                                }}
-                                onFocus={() => {
-                                    if (searchTerm) setShowSuggestions(true)
-                                }}
-                                />
+                            <div className='relative w-64'>
+                                <div className='w-full flex gap-0 text-sm bg-white rounded-md px-2 py-1'>
+                                    <button>
+                                        <Search color="#dc2626" size={20}/>
+                                    </button>
+                                    <input 
+                                    type="search"
+                                    placeholder="Search" 
+                                    className="px-2 w-full bg-white outline-none"
+                                    value={searchTerm} 
+                                    onChange={handleSearch}
+                                    onBlur={() => {
+                                        setTimeout(() => setShowSuggestions(false), 200)
+                                    }}
+                                    onFocus={() => {
+                                        if (searchTerm) setShowSuggestions(true)
+                                    }}
+                                    />
+                                </div>
                                 {showSuggestions && suggestions.length > 0 && (
-                                    <ul className="absolute w-full mt-1 bg-white border rounded-lg shadow-lg max-h-60 overflow-auto text-sm">
+                                    <ul className="absolute w-full mt-1 bg-white border shadow-lg max-h-60 overflow-auto text-sm">
                                     {suggestions.map((suggestion) => (
                                         <li
                                         key={suggestion.id}
