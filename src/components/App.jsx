@@ -11,6 +11,9 @@ const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([])
   const [cartItem, setCartItem] = useState([])
+  const [searchTerm, setSearchTerm] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const navigate = useNavigate();
 
   const menuItems = [
@@ -18,6 +21,9 @@ const App = () => {
       {label: 'Shop', href: '/shop'},
       {label: 'About', href: '/about'},
   ]
+    const handleCardClick = (id) => {
+        navigate(`/shop/${id}`)
+    }
   const addToCart = (item) => {
     setCartItem(prevItem => [...prevItem, item]);
   }
@@ -28,6 +34,30 @@ const App = () => {
     setCartItem((prevItem) =>
         prevItem.filter((item) => item.id !== id)
     )
+  }
+  const handleMenuClick = () => {
+    setIsOpen(!isOpen)
+  }
+  const handleSearch = (e) => {
+    const value = e.target.value 
+    setSearchTerm(value)
+
+    if (value.trim() === '') {
+        setSuggestions([])
+        setShowSuggestions(false)
+        return
+    }
+    const filteredSuggestions = data.filter(item =>
+        item.title.toLowerCase().includes(value.toLowerCase())
+    )
+    setSuggestions(filteredSuggestions)
+    setShowSuggestions(true)
+  }
+  const handleSuggestionClick = (suggestion) => {
+    setSearchTerm(suggestion.title)
+    handleCardClick(suggestion.id)
+    setSuggestions([])
+    setShowSuggestions(false)
   }
   useEffect(() => {
     let isMounted = true;
@@ -46,9 +76,7 @@ const App = () => {
         isMounted = false
     }
     }, []);
-  const handleMenuClick = () => {
-      setIsOpen(!isOpen)
-  }
+  
 
 
   return(
@@ -77,14 +105,38 @@ const App = () => {
                       </div>
                       <div className="flex gap-4">
                           <div className="md:flex gap-1 hidden sm:hidden">
-                              <input 
-                              type="search"
-                              placeholder="Search" 
-                              className="px-2 rounded-md"
-                              />
-                              <button>
-                                  <Search color="#f8fafc" size={24}/>
-                              </button>
+                            <button>
+                                <Search color="#f8fafc" size={24}/>
+                            </button>
+                            <div className='relative w-40'>
+                                <input 
+                                type="search"
+                                placeholder="Search" 
+                                className="px-2 rounded-md"
+                                value={searchTerm}
+                                onChange={handleSearch}
+                                onBlur={() => {
+                                    setTimeout(() => setShowSuggestions(false), 200)
+                                }}
+                                onFocus={() => {
+                                    if (searchTerm) setShowSuggestions(true)
+                                }}
+                                />
+                                {showSuggestions && suggestions.length > 0 && (
+                                    <ul className="absolute w-full mt-1 bg-white border rounded-lg shadow-lg max-h-60 overflow-auto text-sm">
+                                    {suggestions.map((suggestion) => (
+                                        <li
+                                        key={suggestion.id}
+                                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                                        onClick={() => handleSuggestionClick(suggestion)}
+                                        >
+                                        {suggestion.title}
+                                        </li>
+                                    ))}
+                                    </ul>
+                                )}
+                            </div>
+                              
                           </div>
                           <div>
                               <button 
@@ -119,7 +171,7 @@ const App = () => {
           </div>
         </header>
         <main>
-            <Outlet context={{data, cartItem, addToCart, deleteCartItem}} />
+            <Outlet context={{data, cartItem, addToCart, deleteCartItem, handleCardClick}} />
         </main>
         <FooterContent />
       </div>
