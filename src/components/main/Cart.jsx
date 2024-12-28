@@ -11,10 +11,10 @@ const DisplayCartItems = ({item, deleteCartItem}) => {
                 className="w-20 h-20"
                 />
             </div>
-            <div className="col-span-2">
-                <h1>{item.title}</h1>
+            <div className="col-span-2 text-sm">
+                <h1 className="font-medium">{item.title}</h1>
                 <p>${item.price}</p>
-                <p>Quantity: {item.quantity}</p>
+                <p className="font-medium">Quantity: {item.quantity}</p>
             </div>
             <div className="flex flex-col gap-3 items-end">
                 <div className="flex gap-2">
@@ -36,7 +36,7 @@ const Cart = () => {
         }, 0);
     }
     return(
-        <div className="h-[calc(100vh-4rem)] mt-16 py-10">
+        <div className="min-h-[calc(100vh-4rem)] mt-16 py-10">
             <div className="bg-white/40 shadow-lg rounded-lg w-[700px] custom-md:w-[90%] p-10 mx-auto">
                 <div className="flex flex-col gap-4 border-b-black/50 border-b-2 border-b-solid py-4">
                     {cartItem.length === 0 ? 

@@ -67,11 +67,7 @@ const DisplayProduct = ({data, handleCardClick}) => {
 
 
 const ShopPage = () => {
-    const {data} = useOutletContext()
-    const navigate = useNavigate()
-    const handleCardClick = (id) => {
-        navigate(`/shop/${id}`)
-    }
+    const {data, handleCardClick} = useOutletContext()
     
     console.log(data)
     return(
