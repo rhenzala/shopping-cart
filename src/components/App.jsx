@@ -14,6 +14,9 @@ const App = () => {
     { label: "Shop", href: "/shop" },
     { label: "About", href: "/about" },
   ];
+  const handleCartClick = () => {
+    navigate("cart");
+  };
   const handleCardClick = (id) => {
     navigate(`/shop/${id}`);
   };
@@ -49,6 +52,7 @@ const App = () => {
         menuItems={menuItems}
         handleCardClick={handleCardClick}
         cartItem={cartItem}
+        handleCartClick={handleCartClick}
       />
       <main>
         <Outlet
@@ -58,6 +62,7 @@ const App = () => {
             addToCart,
             deleteCartItem,
             handleCardClick,
+            handleCartClick
           }}
         />
       </main>

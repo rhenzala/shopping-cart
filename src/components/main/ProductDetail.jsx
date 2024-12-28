@@ -3,7 +3,7 @@ import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 
 const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
-  const { data, addToCart, cartItem } = useOutletContext();
+  const { data, addToCart, cartItem, handleCartClick } = useOutletContext();
   console.log(data);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -62,6 +62,9 @@ const ProductDetail = () => {
         </div>
         <button onClick={() => handleAddToCart(product, quantity, cartItem)}>
           Add to Cart
+        </button>
+        <button onClick={() => handleCartClick()}>
+            View Cart
         </button>
       </section>
     </div>

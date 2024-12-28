@@ -1,19 +1,15 @@
 import renshop from "../assets/logo/renshop.png";
 import HamburgerMenu from "./HamburgerMenu";
 import { Search, ShoppingCart } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const Header = ({ data, menuItems, handleCardClick, cartItem }) => {
+const Header = ({ data, menuItems, handleCardClick, cartItem, handleCartClick }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
-
-  const handleCartClick = () => {
-    navigate("cart");
-  };
+  
   const handleMenuClick = () => {
     setIsOpen(!isOpen);
   };
