@@ -11,6 +11,7 @@ export default {
       'white': '#f8fafc',
       'black': '#020617',
       'red': '#dc2626',
+      'blue': '#3b82f6',
     },
     extend: {
       screens: {
