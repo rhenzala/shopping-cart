@@ -29,11 +29,11 @@ const HomePage = () => {
           </button>
         </div>
         <div className="w-full h-full absolute">
-          <img src={homeImage} alt="" className="h-full w-full object-cover" />
+          <img src={homeImage} alt="" className="h-full w-full object-cover brightness-75" />
         </div>
       </section>
       <section className="h-[calc(100vh-4rem)] w-full py-8">
-        <div className="flex justify-center">
+        <div className="flex justify-center px-8">
           <h1 className="uppercase text-3xl text-black/70 font-bold">
             check out our new arrivals
           </h1>
