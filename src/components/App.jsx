@@ -3,6 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import FooterContent from "./footer/Footer";
 import Header from "./header/Header";
+import { LoaderCircle } from "lucide-react";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -45,8 +46,8 @@ const App = () => {
         .catch((error) => setError(error))
         .finally(() => setLoading(false))
   }, []);
-  if (loading) return <div className="flex justify-center items-center"><p className="text-6xl font-bold">Loading...</p></div>;
-  if (error) return <div className="flex justify-center items-center"><p className="text-4xl font-bold">A network error was encountered</p></div>;
+  if (loading) return <div className="flex justify-center items-center h-screen w-full"><LoaderCircle size={48} className="animate-spin text-red"/></div>;
+  if (error) return <div className="flex justify-center  p-10 h-screen w-full"><p className="text-4xl font-bold">A network error was encountered</p></div>;
   return (
     <div className="grid">
       <Header
