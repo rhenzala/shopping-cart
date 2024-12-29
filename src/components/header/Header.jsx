@@ -2,7 +2,7 @@ import renshop from "../../assets/logo/renshop.png";
 import HamburgerMenu from "./HamburgerMenu";
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 
 const Header = ({ data, menuItems, handleCardClick, cartItem, handleCartClick }) => {
@@ -12,10 +12,28 @@ const Header = ({ data, menuItems, handleCardClick, cartItem, handleCartClick })
   const handleMenuClick = () => {
     setIsOpen(!isOpen);
   };
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      setVisible(
+        (prevScrollPos > currentScrollPos) || currentScrollPos < 10
+      );
+      
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [prevScrollPos]);
   
   return (
-    <header className="bg-red w-full fixed top-0 z-50">
-      <div className="w-full px-8">
+    <header className={`bg-red w-full fixed top-0 z-50 opacity-85 transition-transform duration-300 delay-150 ${
+      visible ? 'translate-y-0' : '-translate-y-full'
+    }`}>
+      <div className="w-full px-8 custom-md:px-6">
         <div className="flex items-center justify-between">
           <div className="logo">
             <img src={renshop} className="h-16" alt="Renshop logo" />
@@ -40,7 +58,7 @@ const Header = ({ data, menuItems, handleCardClick, cartItem, handleCartClick })
               </div>
               <div>
                 <button onClick={() => handleCartClick()} className="relative">
-                  <span className="bg-black text-white text-[8px] font-bold absolute top-0 w-4 rounded-sm">
+                  <span className="bg-black text-white text-[10px] font-bold absolute top-0 w-4 rounded-sm">
                     {cartItem.length === 0 ? "" : cartItem.length}
                   </span>
                   <ShoppingCart color="#f8fafc" size={24} />
