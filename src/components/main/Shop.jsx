@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-
+import { Tag } from "lucide-react";
 const CreateCard = ({ product, onClick }) => {
   return (
     <div
-      className="py-8 px-5 border-black/20 border-2 border-solid flex flex-col gap-3"
+      className="py-8 px-5 border-black/20 border-2 border-solid hover:cursor-pointer hover:border-red focus-within:border-red transition-all delay-150 duration-150 ease-in flex flex-col gap-3"
       onClick={onClick}
     >
       <div className="flex justify-center items-center p-3 border-b-black/40 border-b border-b-solid">
         <img src={product.image} alt={product.title} className="w-24 h-24" />
       </div>
       <div>
-        <p className="text-sm font-semibold leading-none">{product.title}</p>
-        <p>${product.price}</p>
+        <p className="text-sm font-semibold leading-none truncate">{product.title}</p>
+        <p className="flex gap-1 items-center"><Tag size={16}/> <span>${product.price}</span></p>
       </div>
     </div>
   );
@@ -38,7 +38,7 @@ const DisplayProduct = ({ data, handleCardClick }) => {
       <div className="mb-8">
         <label 
         htmlFor="categories"
-        className="border-black border-2 border-solid px-2 py-1"
+        className="border-black/40 border-2 border-solid px-2 py-1"
         >
           <span>Categories: </span>
           <select
