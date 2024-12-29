@@ -30,7 +30,7 @@ const Header = ({ data, menuItems, handleCardClick, cartItem, handleCartClick })
   }, [prevScrollPos]);
   
   return (
-    <header className={`bg-red w-full fixed top-0 z-50 opacity-85 transition-transform duration-300 delay-150 ${
+    <header className={`bg-red w-full fixed top-0 z-50 transition-transform duration-300 delay-150 ${
       visible ? 'translate-y-0' : '-translate-y-full'
     }`}>
       <div className="w-full px-8 custom-md:px-6">
