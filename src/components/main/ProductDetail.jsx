@@ -1,28 +1,38 @@
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import Quantity from "./Quantity";
+import { useState } from "react";
+
 
 const ProductDetail = () => {
-  const { data, addToCart, cartItem, handleCartClick, updateQuantity, quantity } = useOutletContext();
-  console.log(data);
+  const { data, addToCart, cartItem, handleCartClick, setCartItem } = useOutletContext();
+  const [quantity, setQuantity] = useState(1)
   const { id } = useParams();
   const navigate = useNavigate();
   const product = data.find((prod) => prod.id === parseInt(id));
-  console.log(product);
-
+  
+  
   const handleAddToCart = (product, cartItem, qty) => {
     const existingItem = cartItem.find((item) => item.id === product.id);
-    if (!existingItem) {
+    if (existingItem) {
+      setCartItem(prevItems => 
+        prevItems.map(item => 
+          item.id === product.id ?
+          {...item, quantity: item.quantity + qty}
+          : item
+        )
+      )
+    } else {
       const item = {
         id: product.id,
         title: product.title,
         image: product.image,
         price: product.price,
-        quantity: qty,
+        quantity: qty
       };
       addToCart(item);
     }
   };
-  
+  if (!product) return null
   return (
     <div className="mt-16 min-h-[calc(100vh-4rem)] w-full px-[10%] py-10">
       <div>
@@ -50,7 +60,13 @@ const ProductDetail = () => {
                 <div>
                     <h3 className="text-lg font-semibold">Quantity:</h3>
                 </div>
-                <Quantity updateQuantity={updateQuantity} quantity={quantity} />
+                <Quantity 
+                quantity={quantity} 
+                id={product.id} 
+                setCartItem={setCartItem}
+                setQuantity={setQuantity}
+                cartItem={cartItem}
+                />
             </div>
             <div className="flex flex-col gap-3 items-end">
                 <button 

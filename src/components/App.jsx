@@ -9,7 +9,6 @@ const App = () => {
   const [cartItem, setCartItem] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
 
   const menuItems = [
@@ -17,9 +16,7 @@ const App = () => {
     { label: "Shop", href: "/shop" },
     { label: "About", href: "/about" },
   ];
-  const updateQuantity = (qty) => {
-   setQuantity(qty)
-  }
+  
   const handleCartClick = () => {
     navigate("cart");
   };
@@ -68,8 +65,7 @@ const App = () => {
             deleteCartItem,
             handleCardClick,
             handleCartClick,
-            updateQuantity,
-            quantity
+            setCartItem
           }}
         />
       </main>

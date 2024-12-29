@@ -1,7 +1,10 @@
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { Trash2Icon } from "lucide-react";
+import Quantity from "./Quantity";
+import { useState } from "react";
 
-const DisplayCartItems = ({ item, deleteCartItem, handleCardClick }) => {
+const DisplayCartItems = ({ item, deleteCartItem, handleCardClick, setCartItem, cartItem }) => {
+  const [quantity, setQuantity] = useState(item.quantity)
   return (
     <section className="flex gap-4">
       <div className="flex gap-3 custom-md:flex-col w-2/3">
@@ -13,14 +16,26 @@ const DisplayCartItems = ({ item, deleteCartItem, handleCardClick }) => {
         </div>
         <div className="col-span-2 text-sm">
             <h1 className="font-medium">{item.title}</h1>
-            <p><span className="font-medium">Price: </span> ${item.price}</p>
-            <p><span className="font-medium">Quantity: </span>{item.quantity}</p>
+            <p>
+              <span className="font-medium">Price: </span> 
+              ${item.price}
+            </p>
+            <p>
+              <span className="font-medium">Quantity: </span>
+              <Quantity 
+              quantity={quantity} 
+              id={item.id}
+              setCartItem={setCartItem}
+              cartItem={cartItem}
+              setQuantity={setQuantity}
+              />
+            </p>
         </div>
       </div>
       <div className="flex flex-col gap-3 items-end w-1/3">
         <div className="flex gap-2">
           <p className="font-semibold">Total:</p>
-          <p>${item.quantity * item.price}</p>
+          <p>${(item.quantity * item.price).toFixed(2)}</p>
         </div>
         <button onClick={() => deleteCartItem(item.id)}>
           <Trash2Icon color="#dc2626" size={16} />
@@ -31,7 +46,7 @@ const DisplayCartItems = ({ item, deleteCartItem, handleCardClick }) => {
 };
 const Cart = () => {
   const navigate = useNavigate()
-  const { cartItem, deleteCartItem, handleCardClick } = useOutletContext();
+  const { cartItem, deleteCartItem, handleCardClick, setCartItem} = useOutletContext();
   const calculateTotal = (items) => {
     return items.reduce((total, item) => {
       return total + item.price * item.quantity;
@@ -63,6 +78,8 @@ const Cart = () => {
                 item={item}
                 deleteCartItem={deleteCartItem}
                 handleCardClick={handleCardClick}
+                cartItem={cartItem}
+                setCartItem={setCartItem}
               />
             ))
           )}
@@ -70,7 +87,7 @@ const Cart = () => {
         <div className="flex flex-col gap-4 items-end mt-2">
           <div className="flex gap-2 text-xl">
             <h1 className="font-semibold">Total Cost:</h1>
-            <p>{cartItem.length === 0 ? "" : "$" + calculateTotal(cartItem)}</p>
+            <p>{cartItem.length === 0 ? "" : "$" + calculateTotal(cartItem).toFixed(2)}</p>
           </div>
           <div>
             <button 
