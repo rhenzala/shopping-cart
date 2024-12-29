@@ -1,16 +1,15 @@
-import { useState } from "react";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import Quantity from "./Quantity";
 
 const ProductDetail = () => {
-  const [quantity, setQuantity] = useState(1);
-  const { data, addToCart, cartItem, handleCartClick } = useOutletContext();
+  const { data, addToCart, cartItem, handleCartClick, updateQuantity, quantity } = useOutletContext();
   console.log(data);
   const { id } = useParams();
   const navigate = useNavigate();
   const product = data.find((prod) => prod.id === parseInt(id));
   console.log(product);
 
-  const handleAddToCart = (product, qty, cartItem) => {
+  const handleAddToCart = (product, cartItem, qty) => {
     const existingItem = cartItem.find((item) => item.id === product.id);
     if (!existingItem) {
       const item = {
@@ -23,16 +22,7 @@ const ProductDetail = () => {
       addToCart(item);
     }
   };
-  const addQuantity = () => {
-    setQuantity((quantity) => (quantity += 1));
-  };
-  const subtractQuantity = () => {
-    setQuantity((quantity) => (quantity > 1 ? (quantity -= 1) : 1));
-  };
-  const handleQuantityChange = (e) => {
-    const qty = e.target.value > 1 ? parseInt(e.target.value, 10) : 1;
-    setQuantity(qty);
-  };
+  
   return (
     <div className="mt-16 min-h-[calc(100vh-4rem)] w-full px-[10%] py-10">
       <div>
@@ -60,31 +50,11 @@ const ProductDetail = () => {
                 <div>
                     <h3 className="text-lg font-semibold">Quantity:</h3>
                 </div>
-                <div>
-                    <button 
-                    onClick={() => subtractQuantity()}
-                    className="bg-black/20 hover:bg-black/30 focus-within:bg-black/30 p-1 w-6"
-                    >
-                        -
-                    </button>
-                    <input
-                        type="text"
-                        className="w-10 p-1 outline-none"
-                        value={quantity}
-                        onChange={handleQuantityChange}
-                        min={1}
-                    />
-                    <button 
-                    onClick={() => addQuantity()}
-                    className="bg-black/20 hover:bg-black/30 focus-within:bg-black/30 p-1 w-6"
-                    >
-                        +
-                    </button>
-                </div>
+                <Quantity updateQuantity={updateQuantity} quantity={quantity} />
             </div>
             <div className="flex flex-col gap-3 items-end">
                 <button 
-                onClick={() => handleAddToCart(product, quantity, cartItem)}
+                onClick={() => handleAddToCart(product, cartItem, quantity)}
                 className="bg-white text-blue border-blue border-2 border-solid hover:text-white hover:bg-blue px-3 py-2  font-medium rounded-full w-[200px] uppercase"
                 >
                 Add to Cart
