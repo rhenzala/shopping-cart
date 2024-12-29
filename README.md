@@ -1,7 +1,7 @@
 # Renshoppe
 ## Description
 Renshoppe is a simple shopping cart project applying what I have learned so far in React, with the exception of React Testing Library as I have not implemented it in this project. The image below is the home page and is first rendered when the web site is initially loaded.
-<img src="/shopping-cart/src/assets/cart.png" alt="Homepage">
+<img src="/src/assets/cart.png" alt="Homepage">
 
 Renshoppe has three main page: Home, Shop, and About. It has other pages such as cart and product details page. The shop contains all the products and the user can filter based on the category of product. When the user clicks on a product, it will redirect to the corresponding product detail page where the user can add quantity, add to cart, and go to cart page (by clicking the Buy Now). In the Cart page, the user can edit the quantity and click on the image to go to that product's detail page. Also, there is a working search functionality in the header, which when the user clicks on a suggestion, it will redirect to the corresponding product detail page.
 ## Features
