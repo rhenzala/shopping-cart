@@ -29,7 +29,11 @@ const HomePage = () => {
           </button>
         </div>
         <div className="w-full h-full absolute">
-          <img src={homeImage} alt="" className="h-full w-full object-cover brightness-75" />
+          <img
+            src={homeImage}
+            alt=""
+            className="h-full w-full object-cover brightness-75"
+          />
         </div>
       </section>
       <section className="h-[calc(100vh-4rem)] w-full py-8">

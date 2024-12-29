@@ -5,9 +5,9 @@ const CreateCard = ({ product, onClick }) => {
   const capitalizeWords = (str) => {
     return str
       .split(" ")
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
       .join(" ");
-  }
+  };
   return (
     <div
       className="py-8 px-5 border-black/20 border-2 border-solid hover:cursor-pointer hover:border-red focus-within:border-red transition-all delay-150 duration-150 ease-in flex flex-col gap-3"
@@ -17,9 +17,15 @@ const CreateCard = ({ product, onClick }) => {
         <img src={product.image} alt={product.title} className="w-24 h-24" />
       </div>
       <div>
-        <p className="text-sm font-semibold leading-none truncate">{product.title}</p>
-        <p className="flex gap-1 items-center"><Tag size={16}/> <span>${product.price}</span></p>
-        <p className="text-[12px] text-black/80">In: {capitalizeWords(product.category)}</p>
+        <p className="text-sm font-semibold leading-none truncate">
+          {product.title}
+        </p>
+        <p className="flex gap-1 items-center">
+          <Tag size={16} /> <span>${product.price}</span>
+        </p>
+        <p className="text-[12px] text-black/80">
+          In: {capitalizeWords(product.category)}
+        </p>
       </div>
     </div>
   );
@@ -43,9 +49,9 @@ const DisplayProduct = ({ data, handleCardClick }) => {
   return (
     <div>
       <div className="mb-8">
-        <label 
-        htmlFor="categories"
-        className="border-black/40 border-2 border-solid px-2 py-1"
+        <label
+          htmlFor="categories"
+          className="border-black/40 border-2 border-solid px-2 py-1"
         >
           <span>Categories: </span>
           <select
@@ -79,20 +85,20 @@ const DisplayProduct = ({ data, handleCardClick }) => {
 
 const ShopPage = () => {
   const { data, handleCardClick } = useOutletContext();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   console.log(data);
   return (
     <div className="mt-16 min-h-[calc(100vh-4rem)] w-full px-[10%] py-10">
-        <div className="mb-10">
+      <div className="mb-10">
         <button
-            onClick={() => navigate(-1)}
-            className="px-4 py-2 bg-red/90 text-white font-medium rounded-md hover:bg-red"
-            aria-label="Back to previous page"
+          onClick={() => navigate(-1)}
+          className="px-4 py-2 bg-red/90 text-white font-medium rounded-md hover:bg-red"
+          aria-label="Back to previous page"
         >
-            Back
+          Back
         </button>
-        </div>
+      </div>
       <DisplayProduct data={data} handleCardClick={handleCardClick} />
     </div>
   );

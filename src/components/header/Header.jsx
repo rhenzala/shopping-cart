@@ -5,10 +5,15 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 
-const Header = ({ data, menuItems, handleCardClick, cartItem, handleCartClick }) => {
-  
+const Header = ({
+  data,
+  menuItems,
+  handleCardClick,
+  cartItem,
+  handleCartClick,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const handleMenuClick = () => {
     setIsOpen(!isOpen);
   };
@@ -18,21 +23,21 @@ const Header = ({ data, menuItems, handleCardClick, cartItem, handleCartClick })
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
-      setVisible(
-        (prevScrollPos > currentScrollPos) || currentScrollPos < 10
-      );
-      
+      setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+
       setPrevScrollPos(currentScrollPos);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos]);
-  
+
   return (
-    <header className={`bg-red w-full fixed top-0 z-50 transition-transform duration-300 delay-150 ${
-      visible ? 'translate-y-0' : '-translate-y-full'
-    }`}>
+    <header
+      className={`bg-red w-full fixed top-0 z-50 transition-transform duration-300 delay-150 ${
+        visible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="w-full px-8 custom-md:px-6">
         <div className="flex items-center justify-between">
           <div className="logo">
@@ -75,10 +80,7 @@ const Header = ({ data, menuItems, handleCardClick, cartItem, handleCartClick })
         >
           <nav className="px-2 pt-2 pb-3 space-y-1 flex flex-col">
             <div className="px-3 py-2">
-              <SearchBar 
-              data={data} 
-              handleCardClick={handleCardClick}
-              />
+              <SearchBar data={data} handleCardClick={handleCardClick} />
             </div>
             {menuItems.map((item) => (
               <Link
