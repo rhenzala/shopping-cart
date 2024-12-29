@@ -13,6 +13,7 @@ Renshoppe has three main page: Home, Shop, and About. It has other pages such as
 - React
 - Tailwind
 - Vite
+- FakeStore API
 ## Clone this project
 To clone, just `git clone` it, and run
 ```
