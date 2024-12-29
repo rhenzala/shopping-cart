@@ -1,7 +1,7 @@
 import homeImage from "/src/assets/onlineshop.jpg";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import ImageCarousel from "../ImageCarousel";
 import { ArrowRight } from "lucide-react";
+import ImageCarousel from "./ImageCarousel";
 
 const HomePage = () => {
   const { data, handleCardClick } = useOutletContext();

@@ -2,7 +2,7 @@ import "../App.css";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import FooterContent from "./footer/Footer";
-import Header from "./Header";
+import Header from "./header/Header";
 
 const App = () => {
   const [data, setData] = useState([]);
