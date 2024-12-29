@@ -4,6 +4,7 @@ import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
+import PropTypes from "prop-types";
 
 const Header = ({
   data,
@@ -98,4 +99,11 @@ const Header = ({
   );
 };
 
+Header.propTypes = {
+  data: PropTypes.array,
+  menuItems: PropTypes.array,
+  handleCardClick: PropTypes.func,
+  cartItem: PropTypes.array,
+  handleCartClick: PropTypes.func
+}
 export default Header;

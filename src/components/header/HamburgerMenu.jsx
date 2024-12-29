@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const HamburgerMenu = ({ handleMenuClick, isOpen }) => {
   return (
     <button
@@ -20,5 +22,10 @@ const HamburgerMenu = ({ handleMenuClick, isOpen }) => {
     </button>
   );
 };
+
+HamburgerMenu.propTypes = {
+  handleMenuClick: PropTypes.func,
+  isOpen: PropTypes.bool
+}
 
 export default HamburgerMenu;

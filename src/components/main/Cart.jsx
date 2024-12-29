@@ -2,6 +2,7 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 import { Trash2Icon } from "lucide-react";
 import Quantity from "./Quantity";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const DisplayCartItems = ({
   item,
@@ -112,5 +113,13 @@ const Cart = () => {
     </div>
   );
 };
+
+DisplayCartItems.propTypes = {
+  item: PropTypes.object,
+  deleteCartItem: PropTypes.func,
+  handleCardClick: PropTypes.func,
+  setCartItem: PropTypes.element,
+  cartItem: PropTypes.element
+}
 
 export default Cart;

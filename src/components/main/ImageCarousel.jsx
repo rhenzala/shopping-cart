@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import PropTypes from "prop-types";
 
 const ImageCarousel = ({ data, handleCardClick }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -74,5 +75,10 @@ const ImageCarousel = ({ data, handleCardClick }) => {
     </div>
   );
 };
+
+ImageCarousel.propTypes = {
+  data: PropTypes.array,
+  handleCardClick: PropTypes.func
+}
 
 export default ImageCarousel;

@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Quantity = ({ quantity, id, setCartItem, setQuantity, cartItem }) => {
   const updateQuantity = (qty, id) => {
     setQuantity(qty);
@@ -40,5 +42,13 @@ const Quantity = ({ quantity, id, setCartItem, setQuantity, cartItem }) => {
     </div>
   );
 };
+
+Quantity.propTypes = {
+  quantity: PropTypes.number,
+  id: PropTypes.number,
+  setCartItem: PropTypes.element,
+  setQuantity: PropTypes.element,
+  cartItem: PropTypes.array
+}
 
 export default Quantity;

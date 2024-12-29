@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { Tag } from "lucide-react";
+import PropTypes from "prop-types";
+
+
 const CreateCard = ({ product, onClick }) => {
   const capitalizeWords = (str) => {
     return str
@@ -104,4 +107,17 @@ const ShopPage = () => {
   );
 };
 
+CreateCard.propTypes = {
+  product: PropTypes.object,
+  onClick: PropTypes.func
+}
+ProductCard.propTypes = {
+  product: PropTypes.object,
+  selectedCategory: PropTypes.string,
+  onClick: PropTypes.func
+}
+DisplayProduct.propTypes = {
+  data: PropTypes.array,
+  handleCardClick: PropTypes.func
+}
 export default ShopPage;

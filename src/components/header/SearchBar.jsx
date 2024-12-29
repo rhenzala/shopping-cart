@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
+import PropTypes from "prop-types";
 
 const SearchBar = ({ data, handleCardClick }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -63,5 +64,10 @@ const SearchBar = ({ data, handleCardClick }) => {
     </div>
   );
 };
+
+SearchBar.propTypes = {
+  data: PropTypes.array,
+  handleCardClick: PropTypes.func
+}
 
 export default SearchBar;
