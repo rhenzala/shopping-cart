@@ -33,6 +33,13 @@ const ProductDetail = () => {
     }
   };
   if (!product) return null
+
+  const capitalizeWords = (str) => {
+    return str
+      .split(" ")
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  }
   return (
     <div className="mt-16 min-h-[calc(100vh-4rem)] w-full px-[10%] py-10">
       <div>
@@ -53,8 +60,11 @@ const ProductDetail = () => {
                 <h2 className="text-3xl font-semibold text-red">{product.title}</h2>
                 <p className="text-2xl font-semibold">${product.price}</p>
             </div>
-            <div>
+            <div className="flex flex-col gap-2">
                 <p>{product.description}</p>
+                <div className="bg-black/10 px-3 py-1 w-fit rounded-md">
+                  <span className="text-[12px] text-black/80 font-medium">{capitalizeWords(product.category)}</span>
+                </div>
             </div>
             <div>
                 <div>

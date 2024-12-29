@@ -2,6 +2,12 @@ import { useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { Tag } from "lucide-react";
 const CreateCard = ({ product, onClick }) => {
+  const capitalizeWords = (str) => {
+    return str
+      .split(" ")
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  }
   return (
     <div
       className="py-8 px-5 border-black/20 border-2 border-solid hover:cursor-pointer hover:border-red focus-within:border-red transition-all delay-150 duration-150 ease-in flex flex-col gap-3"
@@ -13,6 +19,7 @@ const CreateCard = ({ product, onClick }) => {
       <div>
         <p className="text-sm font-semibold leading-none truncate">{product.title}</p>
         <p className="flex gap-1 items-center"><Tag size={16}/> <span>${product.price}</span></p>
+        <p className="text-[12px] text-black/80">In: {capitalizeWords(product.category)}</p>
       </div>
     </div>
   );
