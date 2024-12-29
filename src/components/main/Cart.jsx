@@ -10,7 +10,7 @@ const DisplayCartItems = ({ item, deleteCartItem, handleCardClick, setCartItem, 
       <div className="flex gap-3 custom-md:flex-col w-2/3">
         <div 
         onClick={() => handleCardClick(item.id)}
-        className="flex-shrink-0 hover:cursor-pointer p-2 border-black/20 border-2 border-solid flex justify-center items-center"
+        className="flex-shrink-0 hover:cursor-pointer hover:border-red p-2 border-black/20 border-2 border-solid flex justify-center items-center transition-all duration-150 delay-150 ease-in"
         >
             <img src={item.image} alt={item.title} className="w-20 h-20" />
         </div>
@@ -66,7 +66,7 @@ const Cart = () => {
             Back
         </button>
         </div>
-      <div className="bg-white/40 shadow-lg rounded-lg w-[700px] custom-md:w-full p-8 custom-md:px-4 custom-md:py-8 mx-auto my-10">
+      <div className="bg-white/10 shadow-lg rounded-lg w-[700px] custom-md:w-full p-8 custom-md:px-4 custom-md:py-8 mx-auto my-10">
         <h1 className="text-4xl font-bold text-center mb-4">Your Cart</h1>
         <div className="flex flex-col gap-4 border-b-black/50 border-b-2 border-b-solid py-4">
           {cartItem.length === 0 ? (
