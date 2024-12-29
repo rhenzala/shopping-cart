@@ -104,6 +104,6 @@ Header.propTypes = {
   menuItems: PropTypes.array,
   handleCardClick: PropTypes.func,
   cartItem: PropTypes.array,
-  handleCartClick: PropTypes.func
-}
+  handleCartClick: PropTypes.func,
+};
 export default Header;

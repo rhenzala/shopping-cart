@@ -48,7 +48,7 @@ Quantity.propTypes = {
   id: PropTypes.number,
   setCartItem: PropTypes.element,
   setQuantity: PropTypes.element,
-  cartItem: PropTypes.array
-}
+  cartItem: PropTypes.array,
+};
 
 export default Quantity;

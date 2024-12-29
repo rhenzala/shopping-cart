@@ -25,7 +25,7 @@ const HamburgerMenu = ({ handleMenuClick, isOpen }) => {
 
 HamburgerMenu.propTypes = {
   handleMenuClick: PropTypes.func,
-  isOpen: PropTypes.bool
-}
+  isOpen: PropTypes.bool,
+};
 
 export default HamburgerMenu;

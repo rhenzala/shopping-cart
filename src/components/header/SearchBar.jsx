@@ -67,7 +67,7 @@ const SearchBar = ({ data, handleCardClick }) => {
 
 SearchBar.propTypes = {
   data: PropTypes.array,
-  handleCardClick: PropTypes.func
-}
+  handleCardClick: PropTypes.func,
+};
 
 export default SearchBar;

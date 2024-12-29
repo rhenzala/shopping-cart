@@ -119,7 +119,7 @@ DisplayCartItems.propTypes = {
   deleteCartItem: PropTypes.func,
   handleCardClick: PropTypes.func,
   setCartItem: PropTypes.element,
-  cartItem: PropTypes.element
-}
+  cartItem: PropTypes.element,
+};
 
 export default Cart;

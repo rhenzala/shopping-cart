@@ -78,7 +78,7 @@ const ImageCarousel = ({ data, handleCardClick }) => {
 
 ImageCarousel.propTypes = {
   data: PropTypes.array,
-  handleCardClick: PropTypes.func
-}
+  handleCardClick: PropTypes.func,
+};
 
 export default ImageCarousel;
