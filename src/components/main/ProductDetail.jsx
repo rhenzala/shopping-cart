@@ -87,10 +87,10 @@ const ProductDetail = () => {
               Add to Cart
             </button>
             <button
-              onClick={() => handleCartClick()}
+              onClick={() => {handleCartClick()}}
               className="bg-white text-red border-red border-2 border-solid hover:bg-red px-3 py-2 hover:text-white font-medium rounded-full w-[200px] uppercase"
             >
-              Buy Now
+              View Cart
             </button>
           </div>
         </div>
