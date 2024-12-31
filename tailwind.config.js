@@ -6,6 +6,7 @@ export default {
       transparent: "transparent",
       current: "currentColor",
       white: "#f8fafc",
+      'cardbg': "#f1f5f9",
       black: "#020617",
       red: "#dc2626",
       blue: "#3b82f6",
