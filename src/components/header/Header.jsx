@@ -42,7 +42,13 @@ const Header = ({
       <div className="w-full px-8 custom-md:px-6">
         <div className="flex items-center justify-between">
           <div className="logo">
-            <img src={renshop} className="h-16" alt="Renshop logo" />
+            <Link to="/">
+            <img 
+            src={renshop} 
+            className="h-16 hover:cursor-pointer" 
+            alt="Renshoppe logo" 
+            />
+            </Link>
           </div>
           <div className="flex gap-4 items-center">
             <div className="hidden sm:hidden md:flex space-x-8 ml-auto">
