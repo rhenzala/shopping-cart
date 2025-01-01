@@ -1,7 +1,6 @@
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { Trash2Icon } from "lucide-react";
 import Quantity from "./Quantity";
-import { useState } from "react";
 import PropTypes from "prop-types";
 
 const DisplayCartItems = ({
@@ -10,8 +9,9 @@ const DisplayCartItems = ({
   handleCardClick,
   setCartItem,
   cartItem,
+  quantity,
+  setQuantity
 }) => {
-  const [quantity, setQuantity] = useState(item.quantity);
   return (
     <section className="flex gap-4">
       <div className="flex gap-3 custom-md:flex-col w-2/3">
@@ -52,7 +52,7 @@ const DisplayCartItems = ({
 };
 const Cart = () => {
   const navigate = useNavigate();
-  const { cartItem, deleteCartItem, handleCardClick, setCartItem } =
+  const { cartItem, deleteCartItem, handleCardClick, setCartItem, quantity, setQuantity } =
     useOutletContext();
   const calculateTotal = (items) => {
     return items.reduce((total, item) => {
@@ -73,7 +73,7 @@ const Cart = () => {
           Back
         </button>
       </div>
-      <div className="bg-white/10 shadow-lg rounded-lg w-[700px] custom-md:w-full p-8 custom-md:px-4 custom-md:py-8 mx-auto my-10">
+      <div className="bg-cardbg shadow-lg rounded-lg w-[700px] custom-md:w-full p-8 custom-md:px-4 custom-md:py-8 mx-auto my-10">
         <h1 className="text-4xl font-bold text-center mb-4">Your Cart</h1>
         <div className="flex flex-col gap-4 border-b-black/50 border-b-2 border-b-solid py-4">
           {cartItem.length === 0 ? (
@@ -87,6 +87,8 @@ const Cart = () => {
                 handleCardClick={handleCardClick}
                 cartItem={cartItem}
                 setCartItem={setCartItem}
+                quantity={quantity}
+                setQuantity={setQuantity}
               />
             ))
           )}
@@ -120,6 +122,8 @@ DisplayCartItems.propTypes = {
   handleCardClick: PropTypes.func,
   setCartItem: PropTypes.element,
   cartItem: PropTypes.element,
+  quantity: PropTypes.array,
+  setQuantity: PropTypes.element
 };
 
 export default Cart;

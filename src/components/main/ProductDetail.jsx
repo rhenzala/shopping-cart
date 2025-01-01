@@ -1,22 +1,21 @@
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import Quantity from "./Quantity";
-import { useState } from "react";
 
 const ProductDetail = () => {
-  const { data, addToCart, cartItem, handleCartClick, setCartItem } =
+  const { data, addToCart, cartItem, handleCartClick, setCartItem, quantity, setQuantity } =
     useOutletContext();
-  const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   const navigate = useNavigate();
   const product = data.find((prod) => prod.id === parseInt(id));
-
-  const handleAddToCart = (product, cartItem, qty) => {
+  
+  const handleAddToCart = (product, cartItem, quantity) => {
     const existingItem = cartItem.find((item) => item.id === product.id);
+    const productQuantity = quantity.find((qty) => qty.id === product.id)
     if (existingItem) {
       setCartItem((prevItems) =>
         prevItems.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + qty }
+            ? { ...item, quantity: item.quantity + productQuantity.qty }
             : item,
         ),
       );
@@ -26,7 +25,7 @@ const ProductDetail = () => {
         title: product.title,
         image: product.image,
         price: product.price,
-        quantity: qty,
+        quantity: productQuantity.qty,
       };
       addToCart(item);
     }
@@ -72,11 +71,11 @@ const ProductDetail = () => {
               <h3 className="text-lg font-semibold">Quantity:</h3>
             </div>
             <Quantity
-              quantity={quantity}
               id={product.id}
               setCartItem={setCartItem}
-              setQuantity={setQuantity}
               cartItem={cartItem}
+              quantity={quantity}
+              setQuantity={setQuantity}
             />
           </div>
           <div className="flex flex-col gap-3 items-end">
