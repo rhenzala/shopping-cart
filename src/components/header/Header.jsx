@@ -35,7 +35,7 @@ const Header = ({
 
   return (
     <header
-      className={`bg-red w-full fixed top-0 z-50 transition-transform duration-300 delay-150 ${
+      className={`bg-red w-full fixed top-0 z-50 transition-transform opacity-95 duration-300 delay-150 ${
         visible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
@@ -51,7 +51,7 @@ const Header = ({
                   <Link
                     key={item.label}
                     to={item.href}
-                    className="text-white hover:underline-offset-8 px-3 py-2"
+                    className="text-white hover:underline hover:underline-offset-8 px-3 py-2"
                   >
                     {item.label}
                   </Link>
@@ -88,6 +88,7 @@ const Header = ({
                 key={item.label}
                 to={item.href}
                 className="block text-white px-3 py-2 rounded-md"
+                onClick={() => setIsOpen(false)}
               >
                 {item.label}
               </Link>
