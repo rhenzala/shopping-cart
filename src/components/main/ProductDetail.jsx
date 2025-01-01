@@ -50,7 +50,7 @@ const ProductDetail = () => {
         </button>
       </div>
       <section className="my-10 flex gap-8 custom-md:flex-col min-h-[200px]">
-        <div className="border-black/20 border-2 border-solid p-4 w-1/2 custom-md:w-full flex justify-center items-center">
+        <div className="rounded-xl bg-[#fff] border-black/20 border-2 border-solid p-4 w-1/2 custom-md:w-full flex justify-center items-center">
           <img src={product.image} alt={"profile"} className="w-72 h-72" />
         </div>
         <div className="flex flex-col gap-4 w-1/2 py-10 custom-md:w-full">

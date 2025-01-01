@@ -18,7 +18,7 @@ const DisplayCartItems = ({
       <div className="flex gap-3 custom-md:flex-col w-2/3">
         <div
           onClick={() => handleCardClick(item.id)}
-          className="flex-shrink-0 hover:cursor-pointer hover:border-red p-2 border-black/20 border-2 border-solid flex justify-center items-center transition-all duration-150 delay-150 ease-in"
+          className="flex-shrink-0 hover:cursor-pointer hover:border-red p-2 bg-[#fff] rounded-md border-black/20 border-2 border-solid flex justify-center items-center transition-all duration-150 delay-150 ease-in"
         >
           <img src={item.image} alt={item.title} className="w-20 h-20" />
         </div>
