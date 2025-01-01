@@ -28,7 +28,7 @@ const Quantity = ({ quantity, id, setCartItem, setQuantity, cartItem }) => {
     <div>
       <button
         onClick={subtractQuantity}
-        className="bg-black/20 hover:bg-black/30 focus-within:bg-black/30 p-1 w-6"
+        className="rounded-l-md bg-black/10  hover:bg-black/30 focus-within:bg-black/30  p-1 w-6"
       >
         -
       </button>
@@ -41,7 +41,7 @@ const Quantity = ({ quantity, id, setCartItem, setQuantity, cartItem }) => {
       />
       <button
         onClick={addQuantity}
-        className="bg-black/20 hover:bg-black/30 focus-within:bg-black/30 p-1 w-6"
+        className="rounded-r-md bg-black/10 hover:bg-black/30 focus-within:bg-black/30 p-1 w-6"
       >
         +
       </button>
