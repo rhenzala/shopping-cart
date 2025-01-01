@@ -1,80 +1,93 @@
-import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import PropTypes from "prop-types";
+import { Carousel, IconButton } from "@material-tailwind/react";
 
 const ImageCarousel = ({ data, handleCardClick }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying] = useState(true);
-
-  useEffect(() => {
-    let interval;
-    if (isPlaying) {
-      interval = setInterval(() => {
-        setCurrentIndex((prevIndex) =>
-          prevIndex === data.length - 1 ? 0 : prevIndex + 1,
-        );
-      }, 3000);
-    }
-    return () => clearInterval(interval);
-  }, [isPlaying, data.length]);
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === data.length - 1 ? 0 : prevIndex + 1,
-    );
-  };
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? data.length - 1 : prevIndex - 1,
-    );
-  };
-  const goToSlide = (slideIndex) => {
-    setCurrentIndex(slideIndex);
-  };
   return (
-    <div className="relative w-full max-w-3xl mx-auto my-8">
-      <div className="relative h-[calc(100vh-12rem)] overflow-hidden rounded-lg">
-        {data.map((product, index) => (
-          <div
-            key={product.id}
-            className={`absolute w-full h-full py-8 transition-opacity duration-500 ease-in-out
-                ${currentIndex === index ? "opacity-100" : "opacity-0"} flex justify-center`}
-          >
-            <img
-              src={product.image}
-              alt={product.title}
-              className="w-1/2 custom-md:w-2/3 hover:cursor-pointer"
-              onClick={() => handleCardClick(currentIndex + 1)}
-            />
-          </div>
-        ))}
-
-        <button
-          onClick={prevSlide}
-          className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full text-red"
-        >
-          <ChevronLeft size={48} />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full text-red"
-        >
-          <ChevronRight size={48} />
-        </button>
-
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-          {data.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`w-2 h-2 rounded-full transition-colors
-                        ${index === currentIndex ? "bg-red" : "bg-black/70"}`}
+    <Carousel
+    className="rounded-xl my-8 mx-auto h-[80%] w-2/3 custom-md:w-full bg-[#fff] shadow-lg"
+    loop={true}
+    autoplay={true}
+    autoplayDelay={4000}
+      navigation={({ setActiveIndex, activeIndex, length }) => (
+        <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-1">
+          {new Array(length).fill("").map((_, i) => (
+            <span
+              key={i}
+              className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
+                activeIndex === i ? "w-4 bg-red" : "w-2 bg-black/40"
+              }`}
+              onClick={() => setActiveIndex(i)}
             />
           ))}
         </div>
-      </div>
-    </div>
-  );
-};
+      )}
+      prevArrow={({ handlePrev }) => (
+        <IconButton
+          variant="text"
+          color="white"
+          size="lg"
+          onClick={handlePrev}
+          className="!absolute top-2/4 left-4 -translate-y-2/4"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="#dc2626"
+            className="h-6 w-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+            />
+          </svg>
+        </IconButton>
+      )}
+      nextArrow={({ handleNext }) => (
+        <IconButton
+          variant="text"
+          color="white"
+          size="lg"
+          onClick={handleNext}
+          className="!absolute top-2/4 !right-4 -translate-y-2/4"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="#dc2626"
+            className="h-6 w-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+            />
+          </svg>
+        </IconButton>
+      )}
+    >
+      {data.map((product, index) => (
+              <div
+              className="w-full h-full flex justify-center items-center"
+              key={product.id}
+              onClick={() => handleCardClick(index+ 1)}
+              >
+                <img
+                src={product.image}
+                alt={product.title}
+                className=" max-h-[80%] hover:cursor-pointer"
+              />
+              </div>
+        ))}
+    </Carousel>
+  )
+}
+
 
 ImageCarousel.propTypes = {
   data: PropTypes.array,

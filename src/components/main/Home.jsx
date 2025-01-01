@@ -32,12 +32,12 @@ const HomePage = () => {
           <img
             src={homeImage}
             alt=""
-            className="h-full w-full object-cover brightness-75"
+            className="h-full w-full object-cover brightness-50"
           />
         </div>
       </section>
-      <section className="h-[calc(100vh-4rem)] w-full py-8">
-        <div className="flex justify-center px-8">
+      <section className="h-[calc(100vh-4rem)] w-full py-8 px-8">
+        <div className="flex justify-center">
           <h1 className="uppercase text-3xl text-black/70 font-bold">
             check out our new arrivals
           </h1>
