@@ -2,7 +2,7 @@ import renshop from "../../assets/logo/renshop.png";
 import HamburgerMenu from "./HamburgerMenu";
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SearchBar from "./SearchBar";
 import PropTypes from "prop-types";
 
