@@ -2,6 +2,7 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 import { Trash2Icon } from "lucide-react";
 import Quantity from "./Quantity";
 import PropTypes from "prop-types";
+import { useMemo } from "react";
 
 const DisplayCartItems = ({
   item,
@@ -54,11 +55,11 @@ const Cart = () => {
   const navigate = useNavigate();
   const { cartItem, deleteCartItem, handleCardClick, setCartItem, quantity, setQuantity } =
     useOutletContext();
-  const calculateTotal = (items) => {
-    return items.reduce((total, item) => {
+  const calculateTotal = useMemo(() => {
+    return cartItem.reduce((total, item) => {
       return total + item.price * item.quantity;
     }, 0);
-  };
+  }, [cartItem]);
   const handleCheckout = () => {
     alert("Thank you for buying!");
   };
@@ -99,7 +100,7 @@ const Cart = () => {
             <p>
               {cartItem.length === 0
                 ? ""
-                : "$" + calculateTotal(cartItem).toFixed(2)}
+                : "$" + calculateTotal.toFixed(2)}
             </p>
           </div>
           <div>
