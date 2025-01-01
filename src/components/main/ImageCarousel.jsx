@@ -1,14 +1,13 @@
-
 import PropTypes from "prop-types";
 import { Carousel, IconButton } from "@material-tailwind/react";
 
 const ImageCarousel = ({ data, handleCardClick }) => {
   return (
     <Carousel
-    className="rounded-xl my-8 mx-auto h-[80%] w-2/3 custom-md:w-full bg-[#fff] shadow-lg"
-    loop={true}
-    autoplay={true}
-    autoplayDelay={4000}
+      className="rounded-xl my-8 mx-auto h-[80%] w-2/3 custom-md:w-full bg-[#fff] shadow-lg"
+      loop={true}
+      autoplay={true}
+      autoplayDelay={4000}
       navigation={({ setActiveIndex, activeIndex, length }) => (
         <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-1">
           {new Array(length).fill("").map((_, i) => (
@@ -72,22 +71,21 @@ const ImageCarousel = ({ data, handleCardClick }) => {
       )}
     >
       {data.map((product, index) => (
-              <div
-              className="w-full h-full flex justify-center items-center"
-              key={product.id}
-              onClick={() => handleCardClick(index+ 1)}
-              >
-                <img
-                src={product.image}
-                alt={product.title}
-                className=" max-h-[80%] hover:cursor-pointer"
-              />
-              </div>
-        ))}
+        <div
+          className="w-full h-full flex justify-center items-center"
+          key={product.id}
+          onClick={() => handleCardClick(index + 1)}
+        >
+          <img
+            src={product.image}
+            alt={product.title}
+            className=" max-h-[80%] hover:cursor-pointer"
+          />
+        </div>
+      ))}
     </Carousel>
-  )
-}
-
+  );
+};
 
 ImageCarousel.propTypes = {
   data: PropTypes.array,

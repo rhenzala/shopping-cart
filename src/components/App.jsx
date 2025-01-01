@@ -11,27 +11,27 @@ const App = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState([
-    {id:1, qty:1},
-    {id:2, qty:1},
-    {id:3, qty:1},
-    {id:4, qty:1},
-    {id:5, qty:1},
-    {id:6, qty:1},
-    {id:7, qty:1},
-    {id:8, qty:1},
-    {id:9, qty:1},
-    {id:10, qty:1},
-    {id:11, qty:1},
-    {id:12, qty:1},
-    {id:13, qty:1},
-    {id:14, qty:1},
-    {id:15, qty:1},
-    {id:16, qty:1},
-    {id:17, qty:1},
-    {id:18, qty:1},
-    {id:19, qty:1},
-    {id:20, qty:1},
-  ])
+    { id: 1, qty: 1 },
+    { id: 2, qty: 1 },
+    { id: 3, qty: 1 },
+    { id: 4, qty: 1 },
+    { id: 5, qty: 1 },
+    { id: 6, qty: 1 },
+    { id: 7, qty: 1 },
+    { id: 8, qty: 1 },
+    { id: 9, qty: 1 },
+    { id: 10, qty: 1 },
+    { id: 11, qty: 1 },
+    { id: 12, qty: 1 },
+    { id: 13, qty: 1 },
+    { id: 14, qty: 1 },
+    { id: 15, qty: 1 },
+    { id: 16, qty: 1 },
+    { id: 17, qty: 1 },
+    { id: 18, qty: 1 },
+    { id: 19, qty: 1 },
+    { id: 20, qty: 1 },
+  ]);
   const navigate = useNavigate();
 
   const menuItems = [
@@ -98,7 +98,7 @@ const App = () => {
             handleCartClick,
             setCartItem,
             quantity,
-            setQuantity
+            setQuantity,
           }}
         />
       </main>

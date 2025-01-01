@@ -2,15 +2,22 @@ import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import Quantity from "./Quantity";
 
 const ProductDetail = () => {
-  const { data, addToCart, cartItem, handleCartClick, setCartItem, quantity, setQuantity } =
-    useOutletContext();
+  const {
+    data,
+    addToCart,
+    cartItem,
+    handleCartClick,
+    setCartItem,
+    quantity,
+    setQuantity,
+  } = useOutletContext();
   const { id } = useParams();
   const navigate = useNavigate();
   const product = data.find((prod) => prod.id === parseInt(id));
-  
+
   const handleAddToCart = (product, cartItem, quantity) => {
     const existingItem = cartItem.find((item) => item.id === product.id);
-    const productQuantity = quantity.find((qty) => qty.id === product.id)
+    const productQuantity = quantity.find((qty) => qty.id === product.id);
     if (existingItem) {
       setCartItem((prevItems) =>
         prevItems.map((item) =>
@@ -86,7 +93,9 @@ const ProductDetail = () => {
               Add to Cart
             </button>
             <button
-              onClick={() => {handleCartClick()}}
+              onClick={() => {
+                handleCartClick();
+              }}
               className="bg-white text-red border-red border-2 border-solid hover:bg-red px-3 py-2 hover:text-white font-medium rounded-full w-[200px] uppercase"
             >
               View Cart

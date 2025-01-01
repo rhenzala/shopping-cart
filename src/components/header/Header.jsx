@@ -21,17 +21,19 @@ const Header = ({
 
   return (
     <header
-      className={'bg-red w-full fixed top-0 z-50 transition-transform duration-300 delay-150'}
+      className={
+        "bg-red w-full fixed top-0 z-50 transition-transform duration-300 delay-150"
+      }
     >
       <div className="w-full px-8 custom-md:px-6">
         <div className="flex items-center justify-between">
           <div className="logo">
             <Link to="/">
-            <img 
-            src={renshop} 
-            className="h-16 hover:cursor-pointer" 
-            alt="Renshoppe logo" 
-            />
+              <img
+                src={renshop}
+                className="h-16 hover:cursor-pointer"
+                alt="Renshoppe logo"
+              />
             </Link>
           </div>
           <div className="flex gap-4 items-center">

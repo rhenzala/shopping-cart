@@ -11,7 +11,7 @@ const DisplayCartItems = ({
   setCartItem,
   cartItem,
   quantity,
-  setQuantity
+  setQuantity,
 }) => {
   return (
     <section className="flex gap-4">
@@ -53,8 +53,14 @@ const DisplayCartItems = ({
 };
 const Cart = () => {
   const navigate = useNavigate();
-  const { cartItem, deleteCartItem, handleCardClick, setCartItem, quantity, setQuantity } =
-    useOutletContext();
+  const {
+    cartItem,
+    deleteCartItem,
+    handleCardClick,
+    setCartItem,
+    quantity,
+    setQuantity,
+  } = useOutletContext();
   const calculateTotal = useMemo(() => {
     return cartItem.reduce((total, item) => {
       return total + item.price * item.quantity;
@@ -98,9 +104,7 @@ const Cart = () => {
           <div className="flex gap-2 text-xl">
             <h1 className="font-semibold">Total Cost:</h1>
             <p>
-              {cartItem.length === 0
-                ? ""
-                : "$" + calculateTotal.toFixed(2)}
+              {cartItem.length === 0 ? "" : "$" + calculateTotal.toFixed(2)}
             </p>
           </div>
           <div>
@@ -124,7 +128,7 @@ DisplayCartItems.propTypes = {
   setCartItem: PropTypes.element,
   cartItem: PropTypes.element,
   quantity: PropTypes.array,
-  setQuantity: PropTypes.element
+  setQuantity: PropTypes.element,
 };
 
 export default Cart;

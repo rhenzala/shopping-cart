@@ -1,13 +1,10 @@
 import PropTypes from "prop-types";
 
 const Quantity = ({ quantity, id, setCartItem, setQuantity, cartItem }) => {
-  const productQuantity = quantity.find(qty => qty.id === id)
+  const productQuantity = quantity.find((qty) => qty.id === id);
   const updateQuantity = (qty, id) => {
-    setQuantity(prevItem => 
-      prevItem.map(item => 
-        item.id === id ?
-        {...item, qty: qty} : item
-      )
+    setQuantity((prevItem) =>
+      prevItem.map((item) => (item.id === id ? { ...item, qty: qty } : item)),
     );
     if (cartItem) {
       setCartItem((prevItem) =>
@@ -19,7 +16,8 @@ const Quantity = ({ quantity, id, setCartItem, setQuantity, cartItem }) => {
   };
 
   const addQuantity = () => updateQuantity(productQuantity.qty + 1, id);
-  const subtractQuantity = () => updateQuantity(Math.max(1, productQuantity.qty - 1), id);
+  const subtractQuantity = () =>
+    updateQuantity(Math.max(1, productQuantity.qty - 1), id);
   const handleQuantityChange = (e) => {
     const qty = Math.max(1, parseInt(e.target.value, 10) || 1);
     updateQuantity(qty, id);
