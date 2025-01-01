@@ -18,26 +18,10 @@ const Header = ({
   const handleMenuClick = () => {
     setIsOpen(!isOpen);
   };
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPos = window.scrollY;
-      setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
-
-      setPrevScrollPos(currentScrollPos);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [prevScrollPos]);
 
   return (
     <header
-      className={`bg-red w-full fixed top-0 z-50 transition-transform opacity-95 duration-300 delay-150 ${
-        visible ? "translate-y-0" : "-translate-y-full"
-      }`}
+      className={'bg-red w-full fixed top-0 z-50 transition-transform duration-300 delay-150'}
     >
       <div className="w-full px-8 custom-md:px-6">
         <div className="flex items-center justify-between">
@@ -81,7 +65,7 @@ const Header = ({
           </div>
         </div>
         <div
-          className={`bg-red md:hidden absolute top-16 left-0 right-0 bg-gray-800 transform transition-all duration-300 delay-150 ease-in-out origin-top ${
+          className={`bg-red md:hidden absolute top-16 left-0 right-0 transform transition-all duration-300 delay-150 ease-in-out origin-top ${
             isOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"
           }`}
         >
